@@ -1,0 +1,66 @@
+{% extends 'blog/base.html' %}
+
+<style>
+		h1{
+			color:#ffffff;
+		}
+		h3{
+			color:#ffffff;
+		}
+</style>
+<style> 
+	p {  
+	   font-size: 60px; 
+	} 
+</style>
+
+{% block content %}
+{% include "users/timer.html" %}
+<br><br><br>
+	<center>
+		<h1> <b><u>"Question Of The Week"</u></b></h1>
+
+	</center>
+	<div align="left" class="container">
+		<h2><u>Rules and Regulations<u></h2>
+		<ul class="list-group">
+  			<li class="list-group-item">Quiz will be conducted weekly.</li>
+			<li class="list-group-item">One user can upload only one solution file.</li>
+			<li class="list-group-item">Result and Solution will be posted on the very next day.</li>
+			<li class="list-group-item">You can use any of the programming language to solve the problem.</li>
+		</ul>
+	</div>
+	
+	<p id="demo"></p> 
+			<script> 
+			var deadline = new Date("July 7, 2019 02:12:60").getTime(); 
+			var x = setInterval(function() { 
+			var now = new Date().getTime(); 
+			var t = deadline - now; 
+			var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
+			var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+			var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+			var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+			document.getElementById("demo").innerHTML = days + "d " 
+			+ hours + "h " + minutes + "m " + seconds + "s "; 
+				if (t < 0) { 
+					clearInterval(x); 
+					document.getElementById("demo").innerHTML = "EXPIRED"; 
+				} 
+			}, 1000); 
+			</script> 
+	
+	<br><br><br>
+	<h3 align="center">Type the question here</h3>
+	<center>
+	<form method="post" enctype="multipart/form-data">
+    		{% csrf_token %}
+    	<input type="file" name="myfile">
+    	<button type="submit">Upload</button>
+  	</form>
+
+  	{% if uploaded_file_url %}
+    	<p>File uploaded at: <a href="{{ uploaded_file_url }}">{{ 	uploaded_file_url }}</a></p>
+  	{% endif %}
+    </center>
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "blog/base.html" %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+<br>
+<br>
+<br>
+           
+<div class="container">
+  <div class="col-md-10">
+  <div class="content-section">
+    <div class="media">
+      <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
+      <div class="media-body">
+        <h2 class="account-heading">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+      </div>
+    </div>
+          <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Profile Info</legend>
+                {{u_form|crispy }}
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Update</button>
+            </div>
+        </form>
+  </div>
+</div>
+</div>
+
+<div class="container">
+  <div class="content-section">
+     <h3>Quick Access</h3>
+              <p class='text-muted'>Here you can access your quizes and view your overall performance.
+                <ul class="list-group">
+                  <li class="list-group-item list-group-item-light"><a href="{% url 'materials' %}">Study Material</a></li>
+                  <li class="list-group-item list-group-item-light"><a href="{% url 'index' %}">Quiz of the Day</a></li>
+                  <li class="list-group-item list-group-item-light"><a href="{% url 'upload' %}">QuizOfTheWeek</a></li>
+                  <li class="list-group-item list-group-item-light"><a href="{% url 'quizzing' %}">Plagiarism-Checker</a></li>
+                </ul>
+              </p>           
+  </div>
+</div>
+
+
+        
+{% endblock %}

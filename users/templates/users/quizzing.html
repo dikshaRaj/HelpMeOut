@@ -1,0 +1,31 @@
+{% extends 'blog/base.html' %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'quiz.css' %}"></link>
+{% endblock %}
+
+
+{% block content %}
+<br><br>
+<style>
+	h2{
+		color:#ffffff;
+	}
+</style>
+<h2><u>Type your text to be checked for plagiarism</u></h2>
+<br>
+<textarea rows="9" cols="80" wrap="virtual" placeholder="Enter your Text here."></textarea>
+<br><br>
+<center>
+	<a class="btn btn-primary" href="{% url 'plag' %}" role="button"><b>Check-Plagiarism</b></a>
+</center>
+{% endblock %}
+
+
+{% block script %}
+<script type="text/javascript" src="{% static 'quiz.js' %}"></script>
+{% endblock %}
+
+

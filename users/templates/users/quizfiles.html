@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<h2>Files</h2>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>Username</th>
+			<th>Download</th>
+		</tr>	
+	</thead>
+	<tbody>
+	{% for quiz in quizs %}
+		<tr>
+			<th>{{ quiz.username }}</th>
+			<th>{{ quiz.pdf }}</th>
+		</tr>
+	{% endfor %}	
+	</tbody>
+</table>
+{% endblock %}
